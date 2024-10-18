@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block custom_style %}
+<style>
+    li {
+        color: red;
+    }
+</style>
+{% endblock custom_style %}
+
+{% block content %}
+    {% if form.errors and form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ form.non_field_errors }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    <form action="" method="post" class="m-2">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" 
+                   class="form-control" 
+                   id="username" 
+                   name="username"
+                   placeholder="Enter Username"/>
+            {{ form.username.errors }}
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password"
+                   class="form-control"
+                   id="password"
+                   name="password"
+                   placeholder="Enter Password"/>
+            {{ form.password.errors }}
+        </div>
+        <button type="submit" class="btn btn-success">Login</button>
+    </form>
+{% endblock content %}
